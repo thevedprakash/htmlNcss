@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning HTML CSS</title>
+</head>
+<body>
+    <h1>Project Timeline</h1>
+
+<form onsubmit="doForm()">
+    <label for="start">Start Date:</label>
+    <input type="date" id="Start" name="Start">
+    <input type="submit">
+</form>
+
+<form>
+    <label for="end">End Date:</label>
+    <input type="date" id="End" name="End">
+    <input type="submit">
+</form>
+
+<p>When you submit the form, a function is triggered which alerts some text.</p>
+
+<form  onsubmit="myFunction()">
+  Enter name: <input type="text" name="fname">
+  <input type="submit" value="Submit">
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<input type="date" id="start" />
+<input type="date" id="end" />
+
+<script>
+$("#start").change(function(){
+    $("#end").prop("min", $(this).val());
+    $("#end").val(""); //clear end date input when start date changes
+  });
+</script>
+
+<script>
+    $("#Start").change(function(){
+        $("#End").prop("min", $(this).val());
+        $("#End").val(""); //clear end date input when start date changes
+      });
+</script>
+
+<script>
+function myFunction() {
+  alert("The form was submitted");
+}
+</script>
+
+
+
+<!-- (B) JS PROCESSING -->
+<script>
+    function doForm() {
+        alert(document.getElementById('Start').value);
+    }
+</script>
+
+    
+</body>
+</html>
