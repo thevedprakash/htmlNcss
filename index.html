@@ -61,6 +61,183 @@ function myFunction() {
     }
 </script>
 
+
+<h2>Search/Filter Dropdown</h2>
+<p>Click on the button to open the dropdown menu, and use the input field to search for a specific dropdown link.</p>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <a href="#about">About</a>
+    <a href="#base">Base</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="#custom">Custom</a>
+    <a href="#support">Support</a>
+    <a href="#tools">Tools</a>
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+<div class="prodselectbox">
+    <div class="floatleft cat">Category</div>
+    <div class="floatleft catid">
+        <select id="selectcat" name="categoryselected">
+            <option value="" class="rhth">Select Category</option>
+            <option class="edibles" value="Edible Oils" id="selectionone">Edible Oils</option>
+            <option class="vegfats" value="Vegetable Cooking Fats" id="selectiontwo">Vegetable Cooking Fats</option>
+            <option value="Personal Care" id="selectionthree">Personal Care</option>
+            <option class="marga" value="Margarines" id="selectionfour">Margarines</option>
+            <option class='bak' value="Baking" id="selectionfive">Baking</option>
+            <option class="launddet" value="Laundry Detergents" id="selectionsix">Laundry Detergents</option>
+            <option class='laundsop' value="Laundry Soaps" id="selectionseven">Laundry Soaps</option>
+        </select>
+    </div>
+    <div class="floatleft artid">Product</div>
+    <div class="floatleft selectarticle">
+        <select id="selectprod" name="articleID">
+            <option value="" class="rhth23">Select Product</option>
+            <option value="elianto" class="selectors edibles">Elianto</option>
+            <option value="ufuta" class="hidden selectors edibles">Ufuta</option>
+            <option value="bahari-fry" class="selectors edibles">Bahari Fry</option>
+            <option value="golden-fry" class="selectors edibles">Golden Fry</option>
+            <option value="olive-gold" class="selectors edibles">Olive Gold</option>
+            <option value="soya-gold" class="selectors edibles">Soya Gold</option>
+            <option value="sun-gold" class="selectors edibles">Sun Gold</option>
+            <option value="chipo-pus-3" class="selectors vegfats">Chipo Plus 3</option>
+            <option value="cowboy" class="selectors vegfats">Cowboy</option>
+            <option value="kimbo" class="selectors vegfats">Kimbo</option>
+            <option value="mallo" class="selectors vegfats">Mallo</option>
+            <option value="veebol-vegetable-cooking-fat" class="selectors vegfats">Veebol Vegetable Fat</option>
+            <option value="yello" class="selectors vegfats">Yello</option>
+            <option value="pure-natural-active-man" class="selectors percare">Pure & Natural Active-Man</option>
+            <option value="pure-natural-beauty-soap" class="selectors percare">Pure & Natural Beauty Soap</option>
+            <option value="biddy" class="selectors marga">Biddy&#39;s</option>
+            <option value="gold-band-margarine" class="selectors marga">Gold Band Margarine</option>
+            <option value="veebol-pastry" class="selectors marga">Veebool Pastry</option>
+            <option value="bake-rite" class="selectors bak">Bake&#39;rite</option>
+            <option value="mariandazi" class="selectors bak">Mariandazi</option>
+            <option value="gental-hand-wash" class="selectors launddet">Gental Hand Wash</option>
+            <option value="powerboy-pro-activ-liquid-detergent" class="selectors launddet">Powerboy Pro-Activ Liquid Detergent</option>
+            <option value="powerboy-washing-powder" class="selectors launddet">Powerboy Washing Powder</option>
+            <option value="pure-and-natural-soap-flakes" class="selectors launddet">Pure And Natural Soap Flakes</option>
+            <option value="bidco-cream" class="selectors laundsop">Bidco Cream</option>
+            <option value="bidco-idp" class="selectors laundsop">BIDCO IDP</option>
+            <option value="kuku" class="selectors laundsop">KUKU</option>
+            <option value="msafi" class="selectors laundsop">Msafi</option>
+            <option value="nuru-lemon-fresh-scouring-powder" class="selectors laundsop">Nuru Lemon Fresh Scouring Powder</option>
+            <option value="nuru-multipurpose-soap" class="selectors laundsop">Nuru Multipurpose Soap</option>
+            <option value="the-star-range-of-soaps" class="selectors laundsop">The Star Range Of Soaps</option>
+            <option value="white-star-laundry-soap" class="selectors laundsop">White Star</option>
+        </select>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<script>
+$(document).ready(function () {    
+    var allOptions = $('#selectprod option')
+    $('#selectcat').change(function () {
+        $('#selectprod option').remove(); //remove all options
+        var classN = $('#selectcat option:selected').prop('class'); //get the 
+        var opts = allOptions.filter('.' + classN); //selected option's classname
+        $.each(opts, function (i, j) {
+            $(j).appendTo('#selectprod'); //append those options back
+        });
+    });
+});
+</script>
+
+<!-- https://stackoverflow.com/questions/71361771/how-to-hide-a-drop-down-option-based-on-the-selection-of-another-drop-down-in-a -->
+<!-- select source and destination javascript from dropdown -->
+
+
+Departure: <br> <select id="select1"> 
+    <option value="" disabled selected>Please Select</option>
+        <option>Birmingham</option>
+        <option>Bristol</option>
+        <option>Cardiff</option>
+        <option>Liverpool</option>
+        <option>London</option>
+        <option>Manchester</option>
+</select><br><br>
+
+Destination: <br><select id="select2">
+   <option value="" disabled selected>Please Select</option>
+        <option>Birmingham</option>
+        <option>Bristol</option>
+        <option>Cardiff</option>
+        <option>Liverpool</option>
+        <option>London</option>
+        <option>Manchester</option>
+</select><br><br>
+<div id="test"></div>
+
+<script>
+
+$('#select1, #select2').on('change',
+    function () {
     
+    	if ($('#select1').val() == $('#select2').val()) {
+            $("#test").text("Destination can't be the same as Departure");
+        }
+        else {
+            $("#test").text("");
+        }
+    }
+);
+</script>
+    
+
+
+<script>
+
+
+var options = ["1", "2", "3", "4", "5"];
+$('#select').empty();
+$.each(options, function(i, p) {
+    $('#select').append($('<option></option>').val(p).html(p));
+});
+</script>
+
+
+
+<form id="myForm">
+    <select id="selectNumber">
+      <option>Choose a number</option>
+    </select>
+  </form>
+  
+<script>
+    const arr = [1,2,3,4]
+    var options = arr.map(e=>{return `<option value="${e}">${e}</option>`})
+    document.getElementById("selectNumber").innerHTML = options
+</script>
+
+
 </body>
 </html>
